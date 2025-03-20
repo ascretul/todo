@@ -1,0 +1,13 @@
+description: 400 Bad Request - the server cannot or will not process the request due to issues with it
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Message explaining reason of error
+          example: 400 Bad Request - The request could not be understood by the server due to
+            malformed syntax. The client should not repeat the request without modifications.

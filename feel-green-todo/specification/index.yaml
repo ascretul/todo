@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: Feel Green ToDo API
+  version: 1.0.0
+  description: API documentation for Feel Green ToDo project.
+
+
+servers:
+  - url: http://localhost:8001/api
+    description: Local API Server
+
+
+tags:
+  - name: auth
+    description: Auth endpoints
+
+
+paths:
+  /auth/register:
+    post:
+      tags:
+        - auth
+      $ref: "./paths/auth.yaml#/register"
+
+  /auth/login:
+    post:
+      tags:
+        - auth
+      $ref: "./paths/auth.yaml#/login"
+
+  /auth/logout:
+    post:
+      tags:
+        - auth
+      $ref: "./paths/auth.yaml#/logout"
+
+  /auth/forgot-password:
+    post:
+      tags:
+        - auth
+      $ref: "./paths/auth.yaml#/forgotPassword"
+
+  /auth/reset-password:
+    post:
+      tags:
+        - auth
+      $ref: "./paths/auth.yaml#/resetPassword"
+
+  /auth/verify-email/{id}/{hash}:
+    get:
+      tags:
+        - auth
+      $ref: "./paths/auth.yaml#/verifyEmail"
+
+  /auth/email/verification-notification:
+    post:
+      tags:
+        - auth
+      $ref: "./paths/auth.yaml#/sendVerificationEmail"
+
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+
+  schemas:
+    RegisterIn:
+      $ref: './schemas/auth/RegisterIn.yaml'
+    RegisterOut:
+      $ref: './schemas/auth/RegisterOut.yaml'
+    LoginIn:
+      $ref: './schemas/auth/LoginIn.yaml'
+    LoginOut:
+      $ref: './schemas/auth/LoginOut.yaml'
+    ForgotPasswordIn:
+      $ref: './schemas/auth/ForgotPasswordIn.yaml'
+    ResetPasswordIn:
+      $ref: './schemas/auth/ResetPasswordIn.yaml'
+
+
+  responses:
+    BadRequest:
+      $ref: './responses/BadRequest.yaml'
+    InternalServerError:
+      $ref: './responses/InternalServerError.yaml'
+    NoContent:
+      $ref: './responses/NoContent.yaml'
+    NotFound:
+      $ref: './responses/NotFound.yaml'
+    Unauthorized:
+      $ref: './responses/Unauthorized.yaml'
+    Forbidden:
+      $ref: './responses/Forbidden.yaml'
+    PayloadTooLarge:
+      $ref: './responses/PayloadTooLarge.yaml'
+    Unprocessable:
+      $ref: './responses/Unprocessable.yaml'
+    TooManyRequests:
+      $ref: './responses/TooManyRequests.yaml'

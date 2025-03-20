@@ -1,0 +1,14 @@
+description: 500 Internal Server Error - the server encountered an unexpected condition
+  that prevented it from fulfilling the request
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Message explaining reason of error
+          example: 500 Internal Server Error - An internal server error occurred while delivering your
+            request. Please contact support team if the problem persists

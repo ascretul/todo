@@ -1,0 +1,21 @@
+description: 413 Payload Too Large - response status code indicates that
+  the request entity is larger than limits defined by server
+content:
+  text/html:
+    schema:
+      type: string
+    examples:
+      html:
+        summary: HTML message explaining reason of error
+        value: '<html>
+                  <head>
+                    <title>413 Request Entity Too Large</title>
+                  </head>
+                  <body bgcolor="white">
+                    <center>
+                      <h1>413 Request Entity Too Large</h1>
+                    </center>
+                    <hr>
+                    <center>nginx/1.10.3</center>
+                  </body>
+                </html>'

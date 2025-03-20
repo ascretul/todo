@@ -1,0 +1,159 @@
+register:
+  tags:
+    - auth
+  summary: Register a new user
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/RegisterIn"
+  responses:
+    201:
+      description: User registered successfully
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/RegisterOut"
+    422:
+      $ref: "#/components/responses/Unprocessable"
+
+login:
+  tags:
+    - auth
+  summary: Login user
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/LoginIn"
+  responses:
+    200:
+      description: User logged in successfully
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/LoginOut"
+    401:
+      $ref: "#/components/responses/Unauthorized"
+
+logout:
+  tags:
+    - auth
+  summary: Logout user
+  security:
+    - BearerAuth: []
+  responses:
+    200:
+      description: User logged out successfully
+    401:
+      $ref: "#/components/responses/Unauthorized"
+
+forgotPassword:
+  tags:
+    - auth
+  summary: Send password reset link
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/ForgotPasswordIn"
+  responses:
+    200:
+      description: Password reset link sent
+    422:
+      $ref: "#/components/responses/Unprocessable"
+
+resetPassword:
+  tags:
+    - auth
+  summary: Reset password
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/ResetPasswordIn"
+  responses:
+    200:
+      description: Password reset successfully
+    422:
+      $ref: "#/components/responses/Unprocessable"
+
+verifyEmail:
+  tags:
+    - auth
+  summary: Verify user email
+  description: Verifies the email using a signed link
+  security:
+    - BearerAuth: [ ]
+  parameters:
+    - name: id
+      in: path
+      description: User ID
+      required: true
+      schema:
+        type: integer
+        example: 1
+    - name: hash
+      in: path
+      description: Hash for verification
+      required: true
+      schema:
+        type: string
+        example: "b1946ac92492d2347c6235b4d2611184"
+    - name: expires
+      in: query
+      description: Expiry timestamp
+      required: true
+      schema:
+        type: integer
+        example: 1741268562
+    - name: signature
+      in: query
+      description: Signature for request validation
+      required: true
+      schema:
+        type: string
+        example: "186e296eaec54de4ce104778ccb6cce6b54f3c15111b5c64906569f"
+  responses:
+    200:
+      description: Email verified successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Email successfully verified"
+    401:
+      $ref: "#/components/responses/Unauthorized"
+    403:
+      $ref: "#/components/responses/Forbidden"
+
+sendVerificationEmail:
+  tags:
+    - auth
+  summary: Resend email verification link
+  description: Sends a new email verification link to the authenticated user
+  security:
+    - BearerAuth: [ ]
+  responses:
+    200:
+      description: Verification email sent successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Verification email sent"
+    401:
+      $ref: "#/components/responses/Unauthorized"
+    429:
+      $ref: "#/components/responses/TooManyRequests"
+

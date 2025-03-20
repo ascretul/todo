@@ -1,0 +1,18 @@
+description: 401 Unauthorized - the request has not been applied because it
+  lacks valid authentication credentials for the target resource due to
+  missing the Authorization header or expired used bearer token.
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - message
+      properties:
+        code:
+          type: integer
+          description: Optional. Unauthorized entity error code
+          example: 5
+        message:
+          type: string
+          description: Message explaining reason of error
+          example: You are not authorized to use this API without the Authorization Header and bearer token.

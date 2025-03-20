@@ -1,0 +1,14 @@
+description: 422 Unprocessable Entity - response status code indicates that
+  the server understands the content type of the request entity,
+  and the syntax of the request entity is correct, but it was unable to process the contained instructions.
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Message explaining reason of error
+          example: Invalid token or you are already unsubscribed
