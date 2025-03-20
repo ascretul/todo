@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticationController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Api\Auth\AuthenticationApiController;
+use App\Http\Controllers\Api\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Api\Auth\NewPasswordController;
+use App\Http\Controllers\Api\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Api\Auth\RegisteredUserController;
+use App\Http\Controllers\Api\Auth\VerifyEmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +17,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/register')
         ->uses([RegisteredUserController::class, 'store']);
     Route::post('/login')
-        ->uses([AuthenticationController::class, 'store']);
+        ->uses([AuthenticationApiController::class, 'store']);
     Route::post('/forgot-password')
         ->uses([PasswordResetLinkController::class, 'store']);
     Route::post('/reset-password')
@@ -30,6 +30,6 @@ Route::prefix('auth')->group(function () {
         ->uses([EmailVerificationNotificationController::class, 'store'])
         ->middleware(['auth:sanctum', 'throttle:6,1']);
     Route::post('/logout')
-        ->uses([AuthenticationController::class, 'destroy'])
+        ->uses([AuthenticationApiController::class, 'destroy'])
         ->middleware('auth:sanctum');
 });

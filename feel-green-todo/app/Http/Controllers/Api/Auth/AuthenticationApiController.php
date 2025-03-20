@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Exceptions\MissingAuthenticationException;
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Api\Auth\LoginApiRequest;
 use App\Services\Auth\TokenAuthenticator;
 use App\Services\Http\RestResponseFactory;
 use Exception;
@@ -13,8 +13,22 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Psr\Log\LoggerInterface;
 
-class AuthenticationController extends Controller
+/**
+ * Authentication API controller
+ *
+ * @copyright Elena Cretul
+ *
+ * @todo Rename methods
+ */
+class AuthenticationApiController extends Controller
 {
+    /**
+     * Constructor
+     *
+     * @param TokenAuthenticator $tokenAuthenticator
+     * @param RestResponseFactory $restResponseFactory
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         private readonly TokenAuthenticator $tokenAuthenticator,
         private readonly RestResponseFactory $restResponseFactory,
@@ -23,9 +37,13 @@ class AuthenticationController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming authentication request
+     *
+     * @param LoginApiRequest $request
+     *
+     * @return JsonResponse
      */
-    public function store(LoginRequest $request): JsonResponse
+    public function store(LoginApiRequest $request): JsonResponse
     {
         $credentials = $request->validated();
         try {
@@ -50,6 +68,9 @@ class AuthenticationController extends Controller
 
     /**
      * Destroy an authenticated session.
+     *
+     * @param Request $request
+     * @return JsonResponse
      */
     public function destroy(Request $request): JsonResponse
     {

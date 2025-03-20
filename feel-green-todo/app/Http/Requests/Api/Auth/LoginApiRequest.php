@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Api\Auth;
 
 use App\Http\Requests\AbstractApiRequest;
 use App\Services\Http\RestResponseFactory;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 /**
- * Login Request
+ * Login Api Request
  *
  * @copyright Elena Cretul
- *
- * @todo Rename to API Request
  */
-class LoginRequest extends AbstractApiRequest
+class LoginApiRequest extends AbstractApiRequest
 {
     /**
      * Constructor
