@@ -41,7 +41,7 @@ class RestResponseFactory extends ResponseFactory
      *
      * @return JsonResponse
      */
-    public function ok(array|JsonSerializable|null $data = null, int $code = JsonResponse::HTTP_OK, array $headers = []): JsonResponse
+    public function ok(JsonSerializable|array|null $data = null, int $code = JsonResponse::HTTP_OK, array $headers = []): JsonResponse
     {
         return $this->json($data, $code, $headers);
     }
@@ -145,8 +145,8 @@ class RestResponseFactory extends ResponseFactory
      * It's possible to tell client when to try another request with the Retry-After header, but it's optional.
      *
      * @param string $message
-     * @param int|null $errorCode
      * @param int $retryAfterMinutes
+     * @param int|null $errorCode
      *
      * @return JsonResponse
      */
@@ -197,12 +197,12 @@ class RestResponseFactory extends ResponseFactory
     /**
      * Custom server response
      *
-     * @param array|JsonSerializable|null $data
+     * @param JsonSerializable|array|null $data
      * @param int $code
      *
      * @return JsonResponse
      */
-    public function response(array|JsonSerializable|null $data, int $code): JsonResponse
+    public function response(JsonSerializable|array|null $data, int $code): JsonResponse
     {
         return $this->json($data, $code);
     }

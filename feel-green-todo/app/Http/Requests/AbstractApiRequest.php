@@ -15,11 +15,25 @@ use Symfony\Component\HttpFoundation\Response;
  */
 abstract class AbstractApiRequest extends AbstractRequest
 {
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param Validator $validator
+     *
+     * @throws LaravelValidationException
+     */
     protected function failedValidation(Validator $validator): void
     {
         throw (new LaravelValidationException($validator, $this->response($validator->errors()->messages())))
             ->errorBag($this->errorBag);
     }
 
+    /**
+     * Get the proper failed validation response for the request.
+     *
+     * @param  array $errors
+     *
+     * @return Response
+     */
     abstract protected function response(array $errors): Response;
 }

@@ -16,6 +16,8 @@ use Illuminate\Support\Str;
  * @link https://github.com/laravel/fortify/blob/1.x/src/LoginRateLimiter.php
  *
  * @copyright Elena Cretul
+ *
+ * @todo Rename methods into more informative names
  */
 class LoginRateLimiter
 {

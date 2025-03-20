@@ -69,6 +69,11 @@ class TokenAuthenticator
     }
 
     /**
+     * Attempt login
+     *
+     * @param array $credentials
+     * @param Request $request
+     *
      * @throws MissingAuthenticationException
      */
     private function attemptLogin(array $credentials, Request $request): void
@@ -83,6 +88,10 @@ class TokenAuthenticator
     }
 
     /**
+     * Generate token
+     *
+     * @return string
+     *
      * @throws MissingAuthenticationException
      */
     private function generateToken(): string
