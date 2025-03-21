@@ -13,6 +13,7 @@ Route::prefix('user')->group(function () {
     Route::get('/', static function (Request $request) {return $request->user();})
         ->middleware(['auth:sanctum']);
 });
+
 Route::prefix('auth')->group(function () {
     Route::post('/register')
         ->uses([RegisteredUserController::class, 'store']);

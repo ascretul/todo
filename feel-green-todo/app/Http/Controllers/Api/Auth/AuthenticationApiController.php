@@ -42,6 +42,8 @@ class AuthenticationApiController extends Controller
      * @param LoginApiRequest $request
      *
      * @return JsonResponse
+     *
+     * @see feel-green-todo/specification/paths/auth.yaml#/login
      */
     public function store(LoginApiRequest $request): JsonResponse
     {
